@@ -43,7 +43,7 @@ jobs:
               --packages ./packages \
               --owner ${{ github.repository_owner }} \
               --registry ghcr.io \
-              --force ${{ github.event.inputs.force }}
+              --force ${{ inputs.force == true }}
           )
 
           echo "matrix=${matrix}" >> $GITHUB_OUTPUT
