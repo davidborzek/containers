@@ -14,6 +14,7 @@ RUN apk add --no-cache \
     catatonit \
     ca-certificates \
     curl \
+    git \
     tar
 
 RUN mkdir -p /tmp/base
@@ -29,8 +30,13 @@ RUN \
 
 WORKDIR /app/tautulli
 
-RUN curl -fsSL "https://github.com/Tautulli/Tautulli/archive/v${VERSION}.tar.gz" \
-    | tar xzf - -C /app/tautulli  --strip-components=1 \
+RUN git clone --depth 1 --branch "v${VERSION}" https://github.com/Tautulli/Tautulli /app/tautulli \
+    && \
+    git rev-parse HEAD > /app/tautulli/version.txt \
+    && \
+    echo "master" > /app/tautulli/branch.txt \
+    && \
+    rm -rf /app/tautulli/.git \
     && \
     mkdir -p /config \
     && \
