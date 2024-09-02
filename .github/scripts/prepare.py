@@ -127,6 +127,14 @@ def main():
         default="false",
     )
 
+    parser.add_argument(
+        "--limit",
+        "-l",
+        action="store",
+        dest="limit",
+        help="Limit the packages to build",
+    )
+
     args = parser.parse_args()
 
     global owner, registry, force, gh_token
@@ -138,13 +146,17 @@ def main():
     if gh_token is None:
         raise ValueError("GITHUB_TOKEN is not set")
 
-    builds = []
+    limit = None
+    if args.limit is not None and len(args.limit) > 0:
+        limit = args.limit.replace(" ", "").split(",")
 
+    builds = []
     for root, dirs, _ in os.walk(args.packages):
         for dir in dirs:
-            build = prepare_package(os.path.join(root, dir))
-            if build is not None:
-                builds.append(build)
+            if limit is None or dir in limit:
+                build = prepare_package(os.path.join(root, dir))
+                if build is not None:
+                    builds.append(build)
 
     print(json.dumps(builds))
 

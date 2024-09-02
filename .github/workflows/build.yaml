@@ -8,6 +8,11 @@ on:
         required: false
         default: false
         type: boolean
+      limit:
+        description: "Limit the packages"
+        required: false
+        default: ""
+        type: string
   schedule:
     - cron: "0 0 * * *"
 
@@ -43,7 +48,8 @@ jobs:
               --packages ./packages \
               --owner ${{ github.repository_owner }} \
               --registry ghcr.io \
-              --force ${{ inputs.force == true }}
+              --force ${{ inputs.force == true }} \
+              --limit ${{ inputs.limit || '' }}
           )
 
           echo "matrix=${matrix}" >> $GITHUB_OUTPUT
