@@ -147,7 +147,7 @@ def main():
         raise ValueError("GITHUB_TOKEN is not set")
 
     limit = None
-    if args.limit is not None and len(args.limit) > 0:
+    if args.limit is not None and args.limit != "all":
         limit = args.limit.replace(" ", "").split(",")
 
     builds = []
