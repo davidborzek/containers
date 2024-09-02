@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://raw.githubusercontent.com/davidborzek/containers/main/package.schema.json",
+  "title": "Package",
+  "description": "A package to build and publish.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "The name of the package.",
+      "type": "string"
+    },
+    "semver": {
+      "description": "Whether the package version is semver or not.",
+      "type": "boolean",
+      "default": false
+    },
+    "platforms": {
+      "description": "The platforms to build the packages for.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["linux/amd64", "linux/arm64"]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": ["name", "platforms"]
+}
