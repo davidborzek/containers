@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/davidborzek/containers/main/package.schema.json
 ---
 name: mylar3
 semver: true
