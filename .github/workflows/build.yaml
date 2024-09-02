@@ -16,8 +16,29 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install check-jsonschema
+
+      - name: Validate packages
+        run: |
+          find ./packages/ -name package.yaml | xargs -I {} check-jsonschema --schemafile ./package.schema.json {}
+
   prepare:
     runs-on: ubuntu-latest
+    needs: validate
     outputs:
       matrix: ${{ steps.prepare.outputs.matrix }}
     permissions:
