@@ -102,6 +102,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Setup Goss
+        if: ${{ matrix.image.tests_enabled }}
+        uses: e1himself/goss-installation-action@v1
+        with:
+          version: latest
+
       - name: Build Image
         uses: docker/build-push-action@v6
         id: build-test
@@ -114,6 +120,20 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: "ghcr.io/${{ github.repository_owner }}/${{ matrix.package.name }}:test"
+
+      - name: Run Goss Tests
+        id: dgoss
+        if: ${{ matrix.package.goss.enabled }}
+        env:
+          CONTAINER_RUNTIME: docker
+          GOSS_FILE: ${{ matrix.package.goss.config }}
+          GOSS_OPTS: --retry-timeout 60s --sleep 2s --color --format documentation
+          GOSS_SLEEP: 2
+          GOSS_FILES_STRATEGY: cp
+          CONTAINER_LOG_OUTPUT: goss_container_log_output
+        shell: bash
+        run: |
+          dgoss run ghcr.io/${{ github.repository_owner }}/${{ matrix.package.name }}:test
 
       - name: Build and Push Image
         uses: docker/build-push-action@v6

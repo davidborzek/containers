@@ -21,7 +21,9 @@ def get_published_version(image):
         return None
 
     if res.status_code != 200:
-        raise RuntimeError(f"failed to check published ghcr.io version: status code {res.status_code}")
+        raise RuntimeError(
+            f"failed to check published ghcr.io version: status code {res.status_code}"
+        )
 
     # TODO: this is paginated, should we handle that?
     versions = res.json()
@@ -85,6 +87,13 @@ def prepare_package(path):
             return
 
     build["tags"] = prepare_tags(package, build["version"])
+
+    goss_config = os.path.join(path, "goss.yaml")
+    goss_enabled = os.path.exists(goss_config)
+    build["goss"] = {
+        "enabled": goss_enabled,
+        "config": goss_config if goss_enabled else None,
+    }
 
     return build
 
