@@ -1,7 +1,7 @@
 name: Build
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       force:
         description: "Force rebuild"
@@ -12,8 +12,6 @@ on:
         description: "Limit the packages"
         required: false
         type: string
-  schedule:
-    - cron: "0 0 * * *"
 
 jobs:
   validate:
