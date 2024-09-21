@@ -1,0 +1,25 @@
+name: Build on push
+
+concurrency:
+  group: package-build
+  cancel-in-progress: false
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "packages/**"
+
+jobs:
+  changed-packages:
+    uses: davidborzek/containers/.github/workflows/changed-packages.yaml@main
+
+  build:
+    uses: davidborzek/containers/.github/workflows/build.yaml@main
+    needs: ["changed-packages"]
+    permissions:
+      contents: read
+      packages: write
+    with:
+      limit: ${{ needs.changed-packages.outputs.packages }}
+      force: false

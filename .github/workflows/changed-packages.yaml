@@ -1,0 +1,45 @@
+name: Get changed packages
+
+on:
+  workflow_call:
+    outputs:
+      changed:
+        description: "Whether any files were changed (or added)"
+        value: ${{ jobs.changed-packages.outputs.changed }}
+      addedOrModifiedImages:
+        description: "The packages that were changed (or added)."
+        value: ${{ jobs.changed-packages.outputs.packages }}
+
+jobs:
+  changed-packages:
+    name: Get changed packages
+    runs-on: ubuntu-latest
+
+    outputs:
+      changed: "${{ steps.changed-files.outputs.all_changed_and_modified_files_count > 0 }}"
+      packages: "${{ steps.changed-packages.outputs.packages }}"
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: changed-files
+        uses: tj-actions/changed-files@v45
+        with:
+          files: packages/**
+          dir_names: true
+          dir_names_max_depth: 2
+          json: true
+          escape_json: false
+
+      - if: ${{ steps.changed-files.outputs.all_changed_and_modified_files_count > 0 }}
+        id: changed-packages
+        shell: bash
+        run: |
+          PACKAGES=$( \
+              echo '${{ steps.changed-files.outputs.all_changed_and_modified_files }}' \
+                  | jq --raw-output 'map(sub("^packages/"; "")) | join(",")' \
+          )
+
+          echo "packages=${IMAGES}" >> $GITHUB_OUTPUT
