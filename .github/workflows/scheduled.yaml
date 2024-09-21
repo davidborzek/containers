@@ -19,6 +19,9 @@ jobs:
   build:
     name: Build
     uses: davidborzek/containers/.github/workflows/build.yaml@main
+    permissions:
+      contents: read
+      packages: write
     with:
       limit: ${{ inputs.limit }}
       force: ${{ inputs.force == true }}
