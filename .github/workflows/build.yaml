@@ -103,7 +103,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Goss
-        if: ${{ matrix.image.tests_enabled }}
+        if: ${{ matrix.package.goss.enabled }}
         uses: e1himself/goss-installation-action@v1
         with:
           version: latest
