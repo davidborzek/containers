@@ -6,7 +6,7 @@ on:
       changed:
         description: "Whether any files were changed (or added)"
         value: ${{ jobs.changed-packages.outputs.changed }}
-      addedOrModifiedImages:
+      packages:
         description: "The packages that were changed (or added)."
         value: ${{ jobs.changed-packages.outputs.packages }}
 
