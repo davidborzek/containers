@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/davidborzek/containers/main/package.schema.json
+---
+name: test
+semver: true
+platforms: ["linux/amd64", "linux/arm64"]
