@@ -12,7 +12,7 @@ RUN apk add --no-cache \
     curl \
     jq
 
-COPY ./packages/minio-bucket/entrypoint.sh /entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
 
 ENV VERSION=${VERSION}
 
