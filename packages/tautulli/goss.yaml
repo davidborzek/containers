@@ -1,5 +1,10 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/goss-org/goss/master/docs/schema.yaml
 port:
-  tcp6:8181:
+  tcp:8181:
     listening: true
+
+http:
+  http://localhost:8181/status:
+    status: 200
+    timeout: 5000
