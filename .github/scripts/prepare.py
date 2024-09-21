@@ -17,6 +17,9 @@ def get_published_version(image):
         },
     )
 
+    if res.status_code == 404:
+        return None
+
     if res.status_code != 200:
         raise RuntimeError(f"failed to check published ghcr.io version: status code {res.status_code}")
 
