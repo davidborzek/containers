@@ -8,10 +8,13 @@ It also keeps things simple and minimalistic by preventing the usage of s6-overl
 
 Each package is available as `latest` tag and tags specifying the version.
 
-| Package                                                                       | Image                        |
-| ----------------------------------------------------------------------------- | ---------------------------- |
-| [mylar3](https://github.com/davidborzek/containers/pkgs/container/mylar3)     | ghcr.io/davidborzek/mylar3   |
-| [tautulli](https://github.com/davidborzek/containers/pkgs/container/tautulli) | ghcr.io/davidborzek/tautulli |
+> **Note:** The `test` package is a package for testing purposes without any application.=
+
+| Package                                                                               | Image                            |
+| ------------------------------------------------------------------------------------- | -------------------------------- |
+| [minio-bucket](https://github.com/davidborzek/containers/pkgs/container/minio-bucket) | ghcr.io/davidborzek/minio-bucket |
+| [mylar3](https://github.com/davidborzek/containers/pkgs/container/mylar3)             | ghcr.io/davidborzek/mylar3       |
+| [tautulli](https://github.com/davidborzek/containers/pkgs/container/tautulli)         | ghcr.io/davidborzek/tautulli     |
 
 ## Credits
 
