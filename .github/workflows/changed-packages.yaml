@@ -42,4 +42,4 @@ jobs:
                   | jq --raw-output 'map(sub("^packages/"; "")) | join(",")' \
           )
 
-          echo "packages=${IMAGES}" >> $GITHUB_OUTPUT
+          echo "packages=${PACKAGES}" >> $GITHUB_OUTPUT
