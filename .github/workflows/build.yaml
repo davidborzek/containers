@@ -133,7 +133,12 @@ jobs:
           CONTAINER_LOG_OUTPUT: goss_container_log_output
         shell: bash
         run: |
-          dgoss run ghcr.io/${{ github.repository_owner }}/${{ matrix.package.name }}:test tail -f /dev/null
+          image="ghcr.io/${{ github.repository_owner }}/${{ matrix.package.name }}:test"
+          if [[ '${{ matrix.package.goss.type }}' == 'cli' ]]; then
+            dgoss run $image tail -f /dev/null
+          else
+            dgoss run $image
+          fi
 
       - name: Build and Push Image
         uses: docker/build-push-action@v6

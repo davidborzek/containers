@@ -93,6 +93,7 @@ def prepare_package(path):
     build["goss"] = {
         "enabled": goss_enabled,
         "config": goss_config if goss_enabled else None,
+        "type": package["goss"]["type"] or "service",
     }
 
     return build

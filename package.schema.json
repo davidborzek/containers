@@ -23,6 +23,18 @@
       },
       "minItems": 1,
       "uniqueItems": true
+    },
+    "goss": {
+      "description": "The goss test config.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The type of goss test.",
+          "type": "string",
+          "default": "service",
+          "enum": ["cli", "service"]
+        }
+      }
     }
   },
   "required": ["name", "platforms"]
