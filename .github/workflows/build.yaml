@@ -141,6 +141,7 @@ jobs:
           fi
 
       - name: Show container logs
+        if: ${{ always() }}
         shell: bash
         run: |
           cat ./goss_container_log_output
