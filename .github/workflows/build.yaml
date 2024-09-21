@@ -8,6 +8,11 @@ on:
         required: false
         default: false
         type: boolean
+      push:
+        description: "Push the images"
+        required: false
+        default: true
+        type: boolean
       limit:
         description: "Limit the packages"
         required: false
@@ -101,7 +106,7 @@ jobs:
         uses: docker/build-push-action@v6
         id: build
         with:
-          push: true
+          push: ${{ inputs.push == true }}
           build-args: |-
             VERSION=${{ matrix.package.version }}
           context: ./packages/${{ matrix.package.name }}

@@ -25,3 +25,4 @@ jobs:
     with:
       limit: ${{ inputs.limit }}
       force: ${{ inputs.force == true }}
+      push: true
