@@ -12,6 +12,9 @@ jobs:
     uses: davidborzek/containers/.github/workflows/build.yaml@main
     needs: ["changed-packages"]
     if: ${{ needs.changed-packages.outputs.changed == 'true' }}
+    permissions:
+      contents: read
+      packages: write
     with:
       limit: ${{ needs.changed-packages.outputs.packages }}
       force: true
