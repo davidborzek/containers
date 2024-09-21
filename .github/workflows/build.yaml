@@ -106,7 +106,28 @@ jobs:
         uses: docker/build-push-action@v6
         id: build
         with:
-          push: ${{ inputs.push == true }}
+          load: true
+          build-args: |-
+            VERSION=${{ matrix.package.version }}
+          context: ./packages/${{ matrix.package.name }}
+          platforms: ${{ join(matrix.package.platforms, ',') }}
+          file: ./packages/${{ matrix.package.name }}/Dockerfile
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          labels: |-
+            org.opencontainers.image.title=${{ matrix.package.name }}
+            org.opencontainers.image.url=https://ghcr.io/${{ github.repository_owner }}/${{ matrix.package.name }}
+            org.opencontainers.image.version=${{ matrix.package.version }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.vendor=${{ github.repository_owner }}
+          tags: "ghcr.io/${{ github.repository_owner }}/${{ matrix.package.name }}:test"
+
+      - name: Build Image
+        uses: docker/build-push-action@v6
+        id: build-push
+        if: ${{ inputs.push == true }}
+        with:
+          push: true
           build-args: |-
             VERSION=${{ matrix.package.version }}
           context: ./packages/${{ matrix.package.name }}
