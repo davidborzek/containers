@@ -140,6 +140,11 @@ jobs:
             dgoss run $image
           fi
 
+      - name: Show container logs
+        shell: bash
+        run: |
+          cat ./goss_container_log_output
+
       - name: Build and Push Image
         uses: docker/build-push-action@v6
         id: build-push
