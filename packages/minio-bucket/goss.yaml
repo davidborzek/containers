@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/goss-org/goss/master/docs/schema.yaml
+file:
+  /entrypoint.sh:
+    exists: true
+  /usr/bin/mc:
+    exists: true
+  /usr/bin/jq:
+    exists: true
+  /usr/bin/curl:
+    exists: true
+  /usr/bin/bash:
+    exists: true
