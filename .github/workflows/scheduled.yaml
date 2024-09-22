@@ -12,6 +12,11 @@ on:
         description: "Limit the packages"
         required: false
         type: string
+      push:
+        description: "Push packages."
+        required: false
+        default: true
+        type: boolean
   schedule:
     - cron: "0 0 * * *"
 
@@ -25,4 +30,4 @@ jobs:
     with:
       limit: ${{ inputs.limit }}
       force: ${{ inputs.force == true }}
-      push: true
+      push:  ${{ inputs.push || true }}
