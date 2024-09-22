@@ -95,7 +95,7 @@ def prepare_package(path):
         "enabled": goss_enabled,
         "config": goss_config if goss_enabled else None,
         "args": goss.get("args", ""),
-        "entrypoint": goss.get("entrypoint", {})
+        "entrypoint": goss.get("entrypoint", "")
     }
 
     return build
