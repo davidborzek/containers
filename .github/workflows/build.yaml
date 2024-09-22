@@ -136,9 +136,9 @@ jobs:
           image="ghcr.io/${{ github.repository_owner }}/${{ matrix.package.name }}:test"
 
           if [[ -z "${{ matrix.package.goss.entrypoint }}" ]]; then
-            dgoss run $image "${{ matrix.package.goss.args }}"
+            dgoss run $image ${{ matrix.package.goss.args }}
           else
-            dgoss run --entrypoint "${{ matrix.package.goss.entrypoint }}" $image "${{ matrix.package.goss.args }}"
+            dgoss run --entrypoint "${{ matrix.package.goss.entrypoint }}" $image ${{ matrix.package.goss.args }}
           fi
 
       - name: Show container logs
