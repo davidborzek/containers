@@ -28,11 +28,13 @@
       "description": "The goss test config.",
       "type": "object",
       "properties": {
-        "type": {
-          "description": "The type of goss test.",
-          "type": "string",
-          "default": "service",
-          "enum": ["cli", "service"]
+        "entrypoint": {
+          "description": "Override the entrypoint of the image.",
+          "type": "string"
+        },
+        "args": {
+          "description": "Add additional args to the container.",
+          "type": "string"
         }
       }
     }

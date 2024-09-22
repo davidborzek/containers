@@ -4,4 +4,5 @@ name: minio-bucket
 semver: true
 platforms: ["linux/amd64", "linux/arm64"]
 goss:
-  type: cli
+  entrypoint: bash
+  args: tail -f /dev/null

@@ -9,5 +9,5 @@ file:
     exists: true
   /usr/bin/curl:
     exists: true
-  /usr/bin/bash:
+  /bin/bash:
     exists: true

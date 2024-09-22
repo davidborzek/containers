@@ -90,10 +90,12 @@ def prepare_package(path):
 
     goss_config = os.path.join(path, "goss.yaml")
     goss_enabled = os.path.exists(goss_config)
+    goss = package.get("goss", {})
     build["goss"] = {
         "enabled": goss_enabled,
         "config": goss_config if goss_enabled else None,
-        "type": (package.get("goss", {})).get("type", "service"),
+        "args": goss.get("args", ""),
+        "entrypoint": goss.get("entrypoint", {})
     }
 
     return build
