@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/davidborzek/containers/main/package.schema.json
+---
+name: actions-runner
+semver: true
+platforms: ["linux/amd64"]
+goss:
+  entrypoint: bash
+  args: -c "tail -f /dev/null"
