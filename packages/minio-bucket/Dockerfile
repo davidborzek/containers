@@ -1,6 +1,6 @@
 FROM minio/mc:RELEASE.2024-09-16T17-43-14Z AS minio-mc
 
-FROM alpine:3.20.3
+FROM alpine:3.21.0
 
 ARG VERSION
 
