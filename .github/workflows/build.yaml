@@ -109,7 +109,7 @@ jobs:
           version: latest
 
       - name: Build Image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         id: build-test
         with:
           load: true
@@ -148,7 +148,7 @@ jobs:
           cat ./goss_container_log_output
 
       - name: Build and Push Image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         id: build-push
         if: ${{ inputs.push == true }}
         with:
