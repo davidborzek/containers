@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/goss-org/goss/master/docs/schema.yaml
+command:
+  command -v git:
+    exit-status: 0
+  command -v gh:
+    exit-status: 0
+  command -v tmux:
+    exit-status: 0
+  command -v opencode:
+    exit-status: 0
+  command -v code-server:
+    exit-status: 0
+  command -v nix:
+    exit-status: 0
+  command -v direnv:
+    exit-status: 0
